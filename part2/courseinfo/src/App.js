@@ -33,6 +33,16 @@ const Header = ({course}) => {
   );
 }
 
+const Total = ({parts}) => {
+  let total = 0;
+  parts.forEach(part => total += part.exercises);
+  return (
+    <div>
+      <p>Total number of exercises: {total}</p>
+    </div>
+  );
+}
+
 const Content = ({parts}) => {
   return(
     <div>
@@ -48,6 +58,7 @@ const App = () => {
     <div>
       <Header course={course} />
       <Content parts={course.parts}/>
+      <Total parts={course.parts} />
     </div>
   )
 }
