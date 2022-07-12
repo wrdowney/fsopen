@@ -9,6 +9,7 @@ const App = () => {
   ]) 
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const addPerson = (e) => {
     console.log(persons.indexOf(newName));
@@ -33,12 +34,20 @@ const App = () => {
     setNewNumber(e.target.value);
   }
 
+  const handleChangeQuery = (e) => {
+    setSearchQuery(e.target.value);
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <div>
+        filter shown with<input value={searchQuery} onChange={handleChangeQuery} />
+      </div>
+      <h3>add a new</h3>
       <form onSubmit={addPerson}>
         <div>
-          name: <input value={newName} onChange={handleNameChange}/>
+          name: <input value={newName} onChange={handleNameChange} />
         </div>
         <div>
           number: <input value={newNumber} onChange={handleNumberChange} />
@@ -47,7 +56,10 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
-      {persons.map((person, i) => {return <p key={i}>{person.name} {person.number}</p>})}
+      {persons.map((person, i) => {
+        if(person.name.includes(searchQuery)) return <p key={i}>{person.name} {person.number}</p>
+        return null;
+      })}
     </div>
   )
 }
