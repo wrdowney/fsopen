@@ -2,6 +2,14 @@ const course = 'Half Stack application development';
 const parts = ['Fundamentals of React', 'Using props to pass data', 'State of a component'];
 const numExercises = [10, 7, 14];
 
+const Part = ({number}) => {
+  return (
+    <div>
+      <p>{parts[number]} {numExercises[number]}</p>
+    </div>
+  );
+}
+
 const Header = ({course}) => {
   return (
     <div>
@@ -13,15 +21,9 @@ const Header = ({course}) => {
 const Content = ({parts, numExercises}) => {
   return(
     <div>
-        <p>
-          {parts[0]} {numExercises[0]}
-        </p>
-        <p>
-          {parts[1]} {numExercises[1]}
-        </p>
-        <p>
-          {parts[2]} {numExercises[2]}
-        </p>
+        <Part number={0} />
+        <Part number={1} />
+        <Part number={2} />
     </div>
   );
 
