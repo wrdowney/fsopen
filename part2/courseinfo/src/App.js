@@ -33,12 +33,12 @@ const Header = ({course}) => {
   );
 }
 
-const Total = ({parts}) => {
-  // let total = 0;
-  // parts.forEach(part => total += part.exercises);
+const Total = (props) => {
+  let parts = props.parts.parts;
   return (
     <div>
-      <p>Total number of exercises: {parts.reduce((prev,curr) => {return prev.exercises + curr.exercises})}</p>
+      {/* sums all exercises */}
+      <p>Total number of exercises: {parts.reduce((prev,curr) => {return prev + curr.exercises;}, 0)}</p>
     </div>
   );
 }
@@ -58,7 +58,7 @@ const App = () => {
     <div>
       <Header course={course} />
       <Content parts={course.parts}/>
-      <Total parts={course.parts} />
+      <Total parts={course} />
     </div>
   )
 }
