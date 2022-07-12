@@ -34,11 +34,11 @@ const Header = ({course}) => {
 }
 
 const Total = ({parts}) => {
-  let total = 0;
-  parts.forEach(part => total += part.exercises);
+  // let total = 0;
+  // parts.forEach(part => total += part.exercises);
   return (
     <div>
-      <p>Total number of exercises: {total}</p>
+      <p>Total number of exercises: {parts.reduce((prev,curr) => {return prev.exercises + curr.exercises})}</p>
     </div>
   );
 }
