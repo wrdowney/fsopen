@@ -7,6 +7,11 @@ const App = () => {
   const [newName, setNewName] = useState('')
 
   const addPerson = (e) => {
+    console.log(persons.indexOf(newName));
+    if(persons.some(e => e.name === newName)) {
+      alert(`${newName} is already in the phonebook`);
+      return;
+    }
     e.preventDefault();
     const personObject = {
       name: newName,
