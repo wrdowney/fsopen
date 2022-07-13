@@ -1,5 +1,4 @@
 const CountryDisplay = ({searchData}) => {
-    console.log(searchData);
     if (searchData.length > 10) {
         return (
             <p>Too many matches, specify another filter</p>
@@ -9,7 +8,7 @@ const CountryDisplay = ({searchData}) => {
         return (
             <div>
                 {searchData.map(country => 
-                    <p>{country.name}</p>
+                    <p key={country.name}>{country.name}</p>
                 )}
             </div>
             

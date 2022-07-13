@@ -4,7 +4,7 @@ import CountryDisplay from './components/CountryDisplay';
 
 function App() {
 
-  const [searchQuery, setSearchQuery] = useState('botswana');
+  const [searchQuery, setSearchQuery] = useState('America');
   const [searchData, setSearchData] = useState('');
 
   const updateSearchCountries = (e) => {
