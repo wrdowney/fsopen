@@ -1,4 +1,11 @@
+import CountryInformation from "./CountryInformation";
+
 const CountryDisplay = ({searchData}) => {
+
+    const showCountry = (e) => {
+        console.log('showCountry');
+    }
+
     if (searchData.length > 10) {
         return (
             <p>Too many matches, specify another filter</p>
@@ -7,9 +14,19 @@ const CountryDisplay = ({searchData}) => {
     else if (searchData.length > 1) {
         return (
             <div>
-                {searchData.map(country => 
-                    <p key={country.name}>{country.name}</p>
-                )}
+                
+                {searchData.map(country => {
+                    return(      
+                        <div key={country.name}>
+                            <p>{country.name}</p>
+                            <button onClick={showCountry}>show</button>
+                            <div style={{display: 'none'}}>
+                                <CountryInformation country={country}/>
+                            </div>
+                            
+                        </div>
+                    );
+                })}
             </div>
             
         );
@@ -19,16 +36,7 @@ const CountryDisplay = ({searchData}) => {
         console.log(country.name);
         return (
             <div>
-                <h1>{country.name}</h1>
-                <p>capital {country.capital}</p>
-                <p>area {country.area}</p>
-                <h3>languages:</h3>
-                <ul>
-                    {country.languages.map((language, i) => 
-                        <li key={i}>{language.name}</li>
-                    )}
-                </ul>
-                <img src={country.flags.png} alt='Country flag'/>
+                <CountryInformation country={country} />
             </div>
         );
     }
