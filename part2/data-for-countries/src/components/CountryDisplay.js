@@ -17,14 +17,7 @@ const CountryDisplay = ({searchData}) => {
                 
                 {searchData.map(country => {
                     return(      
-                        <div key={country.name}>
-                            <p>{country.name}</p>
-                            <button onClick={showCountry}>show</button>
-                            <div style={{display: 'none'}}>
-                                <CountryInformation country={country}/>
-                            </div>
-                            
-                        </div>
+                        <CountryInformation country={country} />
                     );
                 })}
             </div>
