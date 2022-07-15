@@ -3,12 +3,14 @@ import Filter from './components/Filter';
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/person'
+import Notification from './components/Notification';
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [notificationMessage, setNotificationMessage] = useState('something happened bruh')
 
   useEffect(() => {
     personService.getAll().then(initialPersons => {
