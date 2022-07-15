@@ -17,18 +17,21 @@ const App = () => {
   }, []);
 
   const addPerson = (e) => {
-    console.log(persons.indexOf(newName));
-    if(persons.some(e => e.name === newName)) {
-      alert(`${newName} is already in the phonebook`);
-      return;
-    }
     e.preventDefault();
-    const personObject = {
+
+    const newPerson = {
       name: newName,
       number: newNumber,
+      id: persons.length + 1,
     }
 
-    setPersons(persons.concat(personObject));
+    personService
+      .create(newPerson)
+      .then(returnedPerson => {
+        setPersons(persons.concat(newPerson));
+        setNewName('');
+        setNewNumber('');
+      })
   }
 
   const handleNameChange = (e) => {
