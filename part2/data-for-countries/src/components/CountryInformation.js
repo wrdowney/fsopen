@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
-const api_key = process.env.REACT_APP_API_KEY;
+const api_key = 'f476375c455d1d25d60b89222981a722';
 
 const CountryInformation = ({country}) => {
     const [showInformation, setShowInformation] = useState(false);
@@ -16,7 +16,7 @@ const CountryInformation = ({country}) => {
 
     useEffect(() => {
         axios
-        .get(`https://api.openweathermap.org/data/3.0/onecall?lat=${country.latlng[0]}&lon=${country.latlng[1]}&exclude={part}&appid=${api_key}`)
+        .get(`https://api.openweathermap.org/data/3.0/onecall?lat=${-14.3333}&lon=${-170}&appid=${api_key}`)
         .then(response => {
           console.log(response);  
         });
