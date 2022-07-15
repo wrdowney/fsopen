@@ -34,6 +34,14 @@ const App = () => {
       })
   }
 
+  const removePerson = (person) => {
+    // remove person from phonebook and update state
+    if(window.confirm(`Are you sure you want to remove ${person.name} from the phonebook?`)) {
+      personService.remove(person.id);
+      setPersons(persons.filter(currentPerson => currentPerson.id !== person.id))
+    }
+  }
+
   const handleNameChange = (e) => {
     setNewName(e.target.value);
   }
@@ -51,8 +59,18 @@ const App = () => {
       <h2>Phonebook</h2>
       <Filter searchQuery={searchQuery} handleChangeQuery={handleChangeQuery} />
       <h3>add a new</h3>
-      <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
-      <Persons persons={persons} searchQuery={searchQuery} /> 
+      <PersonForm 
+        addPerson={addPerson} 
+        newName={newName} 
+        handleNameChange={handleNameChange} 
+        newNumber={newNumber} 
+        handleNumberChange={handleNumberChange} 
+      />
+      <Persons 
+        removePerson={removePerson}
+        persons={persons} 
+        searchQuery={searchQuery} 
+      /> 
     </div>
   )
 }

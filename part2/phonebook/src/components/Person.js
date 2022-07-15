@@ -1,6 +1,13 @@
-const Person = ({person}) => {
+const Person = ({removePerson, person}) => {
     return (
-        <p>{person.name} {person.number}</p>
+        <div>
+            <p>{person.name} {person.number}</p>
+            <button onClick={(e)=> {
+                e.preventDefault();
+                removePerson(person);
+                }}>remove</button>
+        </div>
+        
     );
 }
 
