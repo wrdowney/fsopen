@@ -22,23 +22,40 @@ const App = () => {
     const newPerson = {
       name: newName,
       number: newNumber,
-      id: persons.length + 1,
     }
+    
+    const matchingName = persons.find(checkName => checkName.name === newName )
 
-    personService
+    if(matchingName !== undefined) {
+      if(window.confirm(`${newName} is alread added to phonebook, replace the old number with a new one?`)) {
+        personService
+          .update(matchingName.id, newPerson)
+          .then(returnedPerson => {
+            setPersons(persons.map(person => {
+              if(person.id === matchingName.id) return newPerson;
+              else return person;
+            }))
+          })
+        
+      }
+    }
+    else {
+      personService
       .create(newPerson)
       .then(returnedPerson => {
         setPersons(persons.concat(newPerson));
         setNewName('');
         setNewNumber('');
       })
+    }
+
   }
 
   const removePerson = (person) => {
     // remove person from phonebook and update state
     if(window.confirm(`Are you sure you want to remove ${person.name} from the phonebook?`)) {
       personService.remove(person.id);
-      setPersons(persons.filter(currentPerson => currentPerson.id !== person.id))
+      setPersons(persons.filter(currentPerson => currentPerson.id !== person.id));
     }
   }
 
