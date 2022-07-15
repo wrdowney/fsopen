@@ -10,7 +10,7 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [notificationMessage, setNotificationMessage] = useState('something happened bruh')
+  const [notificationMessage, setNotificationMessage] = useState(null)
 
   useEffect(() => {
     personService.getAll().then(initialPersons => {
@@ -34,6 +34,10 @@ const App = () => {
           .update(matchingName.id, newPerson)
           .then(returnedPerson => {
             setPersons(persons.map(person => {
+              setNotificationMessage(`${returnedPerson.name}'s number succesfully changed`)
+              setTimeout(() => {
+                setNotificationMessage(null)
+              }, 5000);
               if(person.id === matchingName.id) return newPerson;
               else return person;
             }))
@@ -45,11 +49,16 @@ const App = () => {
       personService
       .create(newPerson)
       .then(returnedPerson => {
+        setNotificationMessage(`${returnedPerson.name} added successfully`)
+        setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000);
         setPersons(persons.concat(newPerson));
         setNewName('');
         setNewNumber('');
       })
     }
+
 
   }
 
@@ -76,6 +85,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notificationMessage} />
       <Filter searchQuery={searchQuery} handleChangeQuery={handleChangeQuery} />
       <h3>add a new</h3>
       <PersonForm 
