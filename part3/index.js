@@ -2,6 +2,9 @@ const { response } = require('express');
 const express = require('express');
 const app = express();
 
+// makes data access easier
+app.use(express.json());
+
 let notes = [
     {
       id: 1,
@@ -48,6 +51,12 @@ app.delete('/api/notes/:id', (req, res) => {
     notes = notes.filter(note => note.id !== id);
     
     res.status(204).end();
+});
+
+app.post('/api/notes', (req, res) => {
+    const note = req.body; // use express json-parser from above
+    console.log(note);
+    res.json(note);
 });
 
 const PORT = 3001
