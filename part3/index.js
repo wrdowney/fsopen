@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const app = express();
 
@@ -40,6 +41,13 @@ app.get('/api/notes/:id', (req,res) => {
     else {
         res.status(404).end(); // if note is not found respond with 404 status code
     }
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    const id = Number(req.params.id);
+    notes = notes.filter(note => note.id !== id);
+    
+    response.status(204).end();
 });
 
 const PORT = 3002
