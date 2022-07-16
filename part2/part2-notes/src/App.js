@@ -62,7 +62,7 @@ const App = () => {
 
   const notesToShow = showAll
     ? notes
-    : notes.filter(note => note.important)
+    : notes.filter(note => note.important);
 
   return (
     <div>
