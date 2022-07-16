@@ -30,6 +30,18 @@ app.get('/api/notes', (req, res) => {
     res.json(notes);
 });
 
+app.get('/api/notes/:id', (req,res) => {
+    const id = Number(req.params.id);
+    const note = notes.find(note => note.id === id);
+    
+    if(note) {
+        res.json(note);
+    }
+    else {
+        res.status(404).end(); // if note is not found respond with 404 status code
+    }
+});
+
 const PORT = 3002
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
