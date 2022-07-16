@@ -55,7 +55,7 @@ app.delete('/api/notes/:id', (req, res) => {
 
 const generateId = () => {
     const maxId = notes.length > 0
-      ? Math.max(...notes.map(n => n.id))
+      ? Math.max(...notes.map(n => n.id)) // maximum of new array containing ids of all notes
       : 0
     return maxId + 1
   }
@@ -73,7 +73,7 @@ const generateId = () => {
     const note = {
       content: body.content,
       important: body.important || false,
-      date: new Date(),
+      date: new Date(), // generate date on server rather than in browser, more secure
       id: generateId(),
     }
   
