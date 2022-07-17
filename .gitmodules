@@ -1,3 +1,3 @@
 [submodule "part3-notes-backend"]
 	path = part3-notes-backend
-	url = git@github.com:wrdowney/fsopen.git
+	url = git@github.com:wrdowney/part3-notes-backend.git
